@@ -142,7 +142,7 @@ const mouseCoordinatesFromEvent = (e) => {
   return { x: e.clientX, y: e.clientY }
 }
 
-const TinderCard = React.forwardRef(({ flickOnSwipe = true, children, onSwipe, onCardLeftScreen, className, preventSwipe = [], swipeRequirementType = 'velocity', swipeThreshold = settings.swipeThreshold, onSwipeRequirementFulfilled, onSwipeRequirementUnfulfilled }, ref) => {
+const TinderCard = React.forwardRef(({ flickOnSwipe = true, children, onSwipe, onCardLocationChange, onCardLeftScreen, className, preventSwipe = [], swipeRequirementType = 'velocity', swipeThreshold = settings.swipeThreshold, onSwipeRequirementFulfilled, onSwipeRequirementUnfulfilled }, ref) => {
   settings.swipeThreshold = swipeThreshold
   const swipeAlreadyReleased = React.useRef(false)
 
@@ -194,6 +194,7 @@ const TinderCard = React.forwardRef(({ flickOnSwipe = true, children, onSwipe, o
     }
 
     // Card was not flicked away, animate back to start
+    onCardLocationChange(0, 0)
     animateBack(element)
   }, [swipeAlreadyReleased, flickOnSwipe, onSwipe, onCardLeftScreen, preventSwipe, swipeRequirementType])
 
@@ -207,6 +208,7 @@ const TinderCard = React.forwardRef(({ flickOnSwipe = true, children, onSwipe, o
     let lastLocation = { x: 0, y: 0, time: new Date().getTime() }
     let mouseIsClicked = false
     let swipeThresholdFulfilledDirection = 'none'
+    onCardLocationChange(lastLocation.x, lastLocation.y)
 
     element.current.addEventListener(('touchstart'), (ev) => {
       ev.preventDefault()
@@ -239,6 +241,7 @@ const TinderCard = React.forwardRef(({ flickOnSwipe = true, children, onSwipe, o
       const newLocation = dragableTouchmove(coordinates, element.current, offset, lastLocation)
       speed = calcSpeed(lastLocation, newLocation)
       lastLocation = newLocation
+      onCardLocationChange(lastLocation.x, lastLocation.y)
     }
 
     element.current.addEventListener(('touchmove'), (ev) => {
