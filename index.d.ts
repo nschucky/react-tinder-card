@@ -5,6 +5,7 @@ declare type SwipeHandler = (direction: Direction) => void;
 declare type CardLeftScreenHandler = (direction: Direction) => void;
 declare type SwipeRequirementFufillUpdate = (direction: Direction) => void;
 declare type SwipeRequirementUnfufillUpdate = () => void;
+declare type Location = (x: number, y: number) => void;
 
 declare interface API {
   /**
