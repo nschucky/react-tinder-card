@@ -208,7 +208,6 @@ const TinderCard = React.forwardRef(({ flickOnSwipe = true, children, onSwipe, o
     let lastLocation = { x: 0, y: 0, time: new Date().getTime() }
     let mouseIsClicked = false
     let swipeThresholdFulfilledDirection = 'none'
-    onCardLocationChange(lastLocation.x, lastLocation.y)
 
     element.current.addEventListener(('touchstart'), (ev) => {
       ev.preventDefault()
