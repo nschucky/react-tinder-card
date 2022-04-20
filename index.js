@@ -149,7 +149,7 @@ const TinderCard = React.forwardRef(({ flickOnSwipe = true, children, onSwipe, o
   const element = React.useRef()
 
   React.useImperativeHandle(ref, () => ({
-    async swipe (dir = 'right') {
+    async swipe(dir = 'right') {
       if (onSwipe) onSwipe(dir)
       const power = 1000
       const disturbance = (Math.random() - 0.5) * 100
@@ -165,7 +165,7 @@ const TinderCard = React.forwardRef(({ flickOnSwipe = true, children, onSwipe, o
       element.current.style.display = 'none'
       if (onCardLeftScreen) onCardLeftScreen(dir)
     },
-    async restoreCard () {
+    async restoreCard() {
       element.current.style.display = 'block'
       await animateBack(element.current)
     }
@@ -180,7 +180,7 @@ const TinderCard = React.forwardRef(({ flickOnSwipe = true, children, onSwipe, o
     const dir = getSwipeDirection(swipeRequirementType === 'velocity' ? speed : currentPostion)
 
     if (dir !== 'none') {
-      if (onSwipe) onSwipe(dir)
+      if (onSwipe && !preventSwipe.includes(dir)) onSwipe(dir)
 
       if (flickOnSwipe) {
         if (!preventSwipe.includes(dir)) {
