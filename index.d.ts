@@ -47,11 +47,17 @@ declare interface Props {
   onCardLeftScreen?: CardLeftScreenHandler;
 
   /**
-   * An array of directions for which to prevent swiping out of screen. Valid arguments are `'left'`, `'right'`, `'up'` and `'down'`.
+   * A fn to get the prevent swipe parameter. An array of directions for which to prevent swiping
+   * out of screen. Valid arguments are `'left'`, `'right'`, `'up'` and `'down'`.
    *
-   * @default []
+   * This is required to allow the value to be read from within the event listeners until the issue
+   * following issue is closed.
+   *
+   * https://github.com/3DJakob/react-tinder-card/issues/88
+   *
+   * @default null
    */
-  preventSwipe?: string[];
+  preventSwipe?: () => string[];
 
   /**
    * What method to evaluate what direction to throw the card on release. 'velocity' will evaluate direction based on the direction of the swiping movement. 'position' will evaluate direction based on the position the card has on the screen like in the app tinder.
