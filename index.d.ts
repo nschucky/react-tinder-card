@@ -1,13 +1,13 @@
 import React from "react";
 
-declare type Direction = "left" | "right" | "up" | "down";
+export declare type Direction = "left" | "right" | "up" | "down";
 declare type SwipeHandler = (direction: Direction) => void;
 declare type CardLeftScreenHandler = (direction: Direction) => void;
 declare type SwipeRequirementFufillUpdate = (direction: Direction) => void;
 declare type SwipeRequirementUnfufillUpdate = () => void;
 declare type Location = (x: number, y: number) => void;
 
-declare interface API {
+export declare interface API {
   /**
    * Programmatically trigger a swipe of the card in one of the valid directions `'left'`, `'right'`, `'up'` and `'down'`. This function, `swipe`, can be called on a reference of the TinderCard instance. Check the [example](https://github.com/3DJakob/react-tinder-card-demo/blob/master/src/examples/Advanced.js) code for more details on how to use this.
    *
